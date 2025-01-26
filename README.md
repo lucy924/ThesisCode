@@ -1,7 +1,7 @@
 # ThesisCode
 Repository for all code referenced in my PhD thesis.  
 
-**Naming**  
+**Naming (Chapter 3)**  
 In this repository you will find code referencing slightly different than it appears in the thesis.  
 * Cell line B and Cell line C refer to SW780 and RT4 respectively.  
 * B3 and C3 refer to Donor 1 from SW780 and RT4 experiments.  
@@ -9,7 +9,7 @@ In this repository you will find code referencing slightly different than it app
 * B5 and C5 to Donor 3  
 * B6 and C6 to Donor 4
 
-## Karyotyping
+## Karyotyping (Chapter 3)
 * The ACE package documentation can be found here: https://github.com/tgac-vumc/ACE  
 * `get_karyotype_text.py` is a script to help obtain the correct karyotyping terminology from ACE output.  
 * The predicted chromosomal modal number used as input to the ACE program was 4N. 
