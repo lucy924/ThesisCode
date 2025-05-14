@@ -1,20 +1,22 @@
-# ThesisCode
-Repository for all code referenced in my PhD thesis.  
+# Thesis Code
+Repository for code referenced in my PhD thesis.  
 
 
 ## BEBIC Differential Modification Analysis (Chapter 3)
-Some files here are example files for the SW780 test of Adenine outside of the AGG context. All other tests were performed similarly but with the relevant names and base references changed.  
-Many jupyter notebooks contain both python and R code.  
+Some files here are example files for the SW780 test of Adenine outside of the AGG context. All other tests were performed similarly but with the relevant names and base references changed. The code is presented here in a manner easy to follow, with little repetition or messy development, however raw code for all Chapter 3 analyses is available [here](https://github.com/lucy924/BEBIC_DifferentialMethylation) if you wish to view it.  
+Please note that many jupyter notebooks contain both python and R code.  
+DMP = Differential Modification Position  
+DMR = Differential Modification Region  
 
 **Naming**  
-In this repository you will find code referencing slightly different than it appears in the thesis.  
+In this repository you will find code referencing samples slightly differently than it appears in the thesis.  
 * Cell line B and Cell line C refer to SW780 and RT4 respectively.  
 * B3 and C3 refer to Donor 1 from SW780 and RT4 experiments.  
 * B4 to Donor 2 (there is no data from Donor 2 in RT4 experiments)
-* B5 and C5 to Donor 3  
-* B6 and C6 to Donor 4
+* B5 and C5 refer to Donor 3  
+* B6 and C6 refer to Donor 4
 
-## Karyotyping
+### Karyotyping
 * The ACE package documentation can be found here: https://github.com/tgac-vumc/ACE  
 * `get_karyotype_text.py` is a script to help obtain the correct karyotyping terminology from ACE output.  
 * The predicted chromosomal modal number used as input to the ACE program was 4N. 
@@ -36,7 +38,7 @@ These were called sequentially by a bash script [run_basicstats.sh](Chapter3/per
 
 ### Differential modification analysis - DMP
 Both `modkit` and `minfi` were used for DMP analysis.  
-* Modkit code is here: [run_modkit_dmr.sh](Chapter3/bebic_analysis/per_test_scripts/run_modkit_dmr.sh) and performs single site analysis (DMP) and segmentation analysis (DMR) where it dynamically searches for "segments" along the genome of differntial methylation.
+* Modkit code is here: [run_modkit_dmr.sh](Chapter3/bebic_analysis/per_test_scripts/run_modkit_dmr.sh) and performs single site analysis (DMP) and segmentation analysis (DMR) where it dynamically searches for "segments" along the genome of differential methylation.
 * Minfi code is here: [run_minfi_DMP.R](Chapter3/bebic_analysis/per_test_scripts/run_minfi_DMP.R)
 * Results from modkit and minfi were restructured in preparation for plotting effect sizes and other plots.
     * modkit restructure: [filter_raw_dmps.py](Chapter3/bebic_analysis/per_test_scripts/filter_raw_dmps.py)
@@ -51,12 +53,12 @@ Both `modkit` and `minfi` were used for DMP analysis.
 
 ### Differential modification analysis - DMR
 `modkit` and `DSS` were used for DMR analysis. As mentioned above, DMR analysis in modkit was performed concurrently with DMP analysis.  
-`DSS` analysis, along with trialling other methods, are here: [run_other_DMR.alltests.R](Chapter3/bebic_analysis/run_other_DMR.alltests.R)
+`DSS` analysis, along with trialling other methods, are here: [run_other_DMR.alltests.R](Chapter3/bebic_analysis/run_other_DMR.alltests.R)  
 Because there were so few DMR results, all the code from the related files above are condensed into one jupyter notebook: [segments_all_test.ipynb](Chapter3/bebic_analysis/segments_all_test.ipynb)
 
-### Genes and ENCODE annotation
-Annotations were added using genome analysis packages in R. concurrently to plotting on the karyograms. Plotting code is here: [karyoplot_DMPs.ipynb](Chapter3/bebic_analysis/karyoplot_DMPs.ipynb). References used were from the CHM13-T2T gene and ENCODE annotation data, https://github.com/marbl/CHM13 (gene annotation version JHU RefSeqv110 + Liftoff v5.1)
+### Gene analyses
+Code for DMP/DMR mapping to genes and ENCODE data, as well as Gene Ontology and KEGGG pathway analyses, can be found in [gene_analyses.ipynb](Chapter3/bebic_analysis/gene_analyses.ipynb) for 5mC and 5hmC, and in some cases for 6mA. Identified genes were input into GO and KEGG enrichment analyses using `goana` and `kegga` from the limma package in R.
 
-### Ontology and pathway analysis
-Identified genes were input into GO and KEGG enrichment analyses using `goana` and `kegga` from the limma package in R. GO terms were additionally grouped in semantic space using GO-Figure! (https://gitlab.com/evogenlab/GO-Figure)  
-See pathway analysis code here: [pathway_mapping.ipynb](Chapter3/bebic_analysis/pathway_mapping.ipynb)
+#### Genes and ENCODE annotation
+References used were from the CHM13-T2T gene and ENCODE annotation data, here: https://github.com/marbl/CHM13 (gene annotation version JHU RefSeqv110 + Liftoff v5.1).
+Lolliplots were made to show were DMPs and DMRs are mapped to gene regions, and are located here: [Chapter3/bebic_analysis/lolliplots](Chapter3/bebic_analysis/lolliplots). Only relevant genes or locations with multiple mappings across methods (modkit/minfi/DSS) or cell lines (SW780/RT4) are presented in the main thesis body. 
